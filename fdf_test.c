@@ -6,7 +6,7 @@
 /*   By: agaspard <agaspard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 15:06:43 by agaspard          #+#    #+#             */
-/*   Updated: 2017/02/21 10:30:37 by agaspard         ###   ########.fr       */
+/*   Updated: 2017/02/22 16:16:22 by agaspard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,28 +24,75 @@ void	create_img(t_env *e)
 	e->data = mlx_get_data_addr(e->img, &(e->bpp), &(e->sizeline), &(e->endian));
 }	
 
-void	put_pixel(t_env *e)
+void	put_pixel(t_env *e, int x, int y)
 {
-	int	x;
-	int	y;
+		e->data[(y * 1000) + x] = 0xFFFFFF;
+}
 
-	y = 0;
-	x = 0;
-	while ((x > 0 && y > 0) && (x < 1000 && y < 1000))
+void	print_line(t_env *e)
+{
+	int x;
+	int y;
+	int dx;
+	int dy;
+	int	xinc;
+	int	yinc;
+	int cumul;
+	int i;
+
+	e->xi = 200;
+	e->yi = 200;
+	e->xf = 800;
+	e->yf = 800;
+	x = e->xi;
+	y = e->yi;
+	dx = e->xf - x;
+	dy = e->yi - y;
+	xinc = (dx > 0) ? 1 : -1;
+	yinc = (dy > 0) ? 1 : -1;
+	if (dx > dy)
 	{
-		e->data[(y * 1000 * 4) + (x * 4)] = 255;
-		e->data[(y * 1000 * 4) + (x * 4) + 1] = 255;
-		e->data[(y * 1000 * 4) + (x * 4) + 2] = 255;
-		e->data[(y * 1000 * 4) + (x * 4) + 3] = 255;
+		cumul = dx / 2;
+		i = 1;
+		while (i <= dx)
+		{
+			x += xinc;
+			cumul += dy;
+			i++;
+			if (cumul >= dx)
+			{
+				cumul -= dx;
+				y += yinc;
+			}
+			put_pixel(e, x, y);
+		}
+	}
+	else
+	{
+		cumul = dy / 2;
+		i = 1;
+		while (i <= dy)
+		{
+			y += yinc;
+			cumul += dx;
+			i++;
+			if (cumul >= dy)
+			{
+				cumul -= dy;
+				x += xinc;
+			}
+			put_pixel(e, x, y);
+		}
 	}
 }
 
-int		gere_key(int keycode, t_env *e)
+
+int		gere_key(int keycode, void *data)
 {
-	e = 0;
+	(void)data;
 	if (keycode == KEY_ESC)
 		exit(0);
-	return (0);
+	return (1);
 }
 
 int	main()
@@ -59,7 +106,7 @@ int	main()
 	init_mlx(e);
 //	parse_fd(av[1], e);
 	create_img(e);
-	put_pixel(e);
+	print_line(e);
 	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
 	mlx_key_hook(e->win, gere_key, e);
 	mlx_destroy_image(e->mlx, e->img);

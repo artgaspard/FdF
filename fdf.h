@@ -6,7 +6,7 @@
 /*   By: agaspard <agaspard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/18 11:44:22 by agaspard          #+#    #+#             */
-/*   Updated: 2017/02/19 17:11:41 by agaspard         ###   ########.fr       */
+/*   Updated: 2017/02/21 13:41:35 by agaspard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ typedef struct	s_env
 	int			bpp;
 	int			sizeline;
 	int			endian;
+	int			xi;
+	int			yi;
+	int			xf;
+	int			yf;
 }				t_env;
 
 int		get_next_line(int const fd, char **line);
