@@ -6,7 +6,7 @@
 #*   By: agaspard <agaspard@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2017/02/19 16:34:57 by agaspard          #+#    #+#             *#
-#*   Updated: 2017/02/19 17:11:36 by agaspard         ###   ########.fr       *#
+#*   Updated: 2017/02/25 13:07:38 by agaspard         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -15,7 +15,8 @@ NAME = fdf
 
 # COMPILATION
 CC = clang
-CCFLAGS = -Wall -Werror -Wextra -lmlx -framework OpenGL -framework AppKit
+CCFLAGS = -Wall -Werror -Wextra
+LIBFLAGS = -lmlx -framework OpenGL -framework AppKit
 
 # DIRECTORIES
 D_SRC = src
@@ -24,16 +25,16 @@ D_OBJ = obj
 D_LIB = libft
 
 # LIBRARIES
-F_LIB = libft.a
+F_LIB = libft/libft.a
 DF_LIB =  $(addprefix $(D_LIB)/, $(F_LIB))
 LDFLAGS = $(addprefix -L, $(D_LIB))
 LDLIBS = -lft
 
 # SOURCES
 F_SRC =\
-		fdf_test.c\
-		get_next_line.c\
-		parse.c\
+	   main.c \
+	   fdf_test.c \
+	   parse.c \
 
 # ***************************************************************************** #
 
@@ -69,7 +70,7 @@ $(D_OBJ)/%.o: $(D_SRC)/%.c $(D_INC)
 $(NAME): $(DF_OBJ)
 	@make -C $(D_LIB)
 	@echo "$(LOG_CYAN)$(NAME)... assembling...$(LOG_NOCOLOR)"
-	@$(CC) $(LDFLAGS) $(LDLIBS) $^ -o $@
+	@$(CC) $(LIBFLAGS) $(LDFLAGS) $(LDLIBS) $^ -o $@
 	@echo "$(LOG_GREEN)$(NAME)... compiled ✓$(LOG_NOCOLOR)"
 
 clean:

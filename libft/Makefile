@@ -6,7 +6,7 @@
 #    By: agaspard <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/09 14:33:41 by agaspard          #+#    #+#              #
-#*   Updated: 2017/01/12 16:43:32 by agaspard         ###   ########.fr       *#
+#*   Updated: 2017/02/25 10:42:21 by agaspard         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,7 +88,8 @@ SRC =\
 		strings/ft_strsub.c \
 		strings/ft_strtrim.c \
 		chars/ft_tolower.c \
-		chars/ft_toupper.c
+		chars/ft_toupper.c \
+		gnl/get_next_line.c
 
 # **************************************************************************** #
 
