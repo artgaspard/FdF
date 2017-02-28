@@ -1,28 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_test.c                                         :+:      :+:    :+:   */
+/*   print_fd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agaspard <agaspard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/13 15:06:43 by agaspard          #+#    #+#             */
-/*   Updated: 2017/02/25 14:54:33 by agaspard         ###   ########.fr       */
+/*   Created: 2017/02/26 10:45:51 by agaspard          #+#    #+#             */
+/*   Updated: 2017/02/28 17:00:28 by agaspard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void	init_mlx(t_env *e)
-{
-	e->mlx = mlx_init();
-	e->win = mlx_new_window(e->mlx, 1000, 1000, "test");
-}
-
-void	create_img(t_env *e)
-{
-	e->img = mlx_new_image(e->mlx, 1000, 1000);
-	e->data = mlx_get_data_addr(e->img, &(e->bpp), &(e->szl), &(e->endian));
-}	
 
 void	put_pixel(t_env *e, int x, int y)
 {
@@ -35,21 +23,17 @@ void	put_pixel(t_env *e, int x, int y)
 	}
 }
 
-void	print_line(t_env *e)
+void    print_line(t_env *e)
 {
 	int x;
 	int y;
 	int dx;
 	int dy;
-	int	xinc;
-	int	yinc;
+	int xinc;
+	int yinc;
 	int cumul;
 	int i;
 
-	e->xi = 0;
-	e->yi = 0;
-	e->xf = 200;
-	e->yf = 500;
 	x = e->xi;
 	y = e->yi;
 	dx = e->xf - x;
@@ -91,37 +75,49 @@ void	print_line(t_env *e)
 		}
 	}
 }
-
-int		gere_key(int keycode, void *data)
+/*
+void	iso_2D(int x, int y, int z, t_env *e)
 {
-	(void)data;
-	if (keycode == KEY_ESC)
-		exit(0);
-	return (1);
+	int xiso;
+	int	yiso;
+	double	cte1;
+	double	cte2;
+
+	cte1 = 1;
+	cte2 = 1;
+	xiso = (cte1 * x) - (cte2 * y);
+	yiso = z + ((cte1 / 2) * x) + ((cte2 / 2) * y);
+	e->xf = xiso;
+	e->yf = yiso;
 }
-
-int		fdf(int ac, char **av)
+*/
+void	get_coor_3D(t_env *e)
 {
-	t_env	*e;
+	int	x;
+	int y;
+	int	y2;
 
-	if (ac == 2)
+	x = 0;
+	y = 0;
+	y2 = 1;
+	while (y < e->ymax)
 	{
-		if ((e = (t_env*)malloc(sizeof(t_env))) == 0)
-			return (0);
-//		init_mlx(e);
-		check_error(ac, av, e);
-//		create_img(e);
-//		print_line(e);
-//		mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
-//		mlx_key_hook(e->win, gere_key, e);
-//		mlx_destroy_image(e->mlx, e->img);
-//		mlx_loop(e->mlx);
+		while (x < e->xmax)
+		{
+			e->xi = e->map[y][x];
+			printf("xi = %d\n", e->map[y][x]);
+			e->yi = *(e->map[y]);
+			printf("yi = %d\n", *(e->map[y]));
+			e->xf = e->map[y2][x];
+			printf("xf = %d\n", e->map[y2][x]);
+			e->yf = *(e->map[y2]);
+			printf("yf = %d\n", *(e->map[y2]));
+			print_line(e);
+			x++;
+			y2++;
+		}
+		x = 0;
+		y++;
+		y2 = y;
 	}
-	else
-	{
-		ft_putstr("Usage : ./");
-		ft_putstr(av[1]);
-		ft_putstr(" <filename> [ case_size z_size ]\n");
-	}
-	return (0);
 }

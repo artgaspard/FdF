@@ -6,7 +6,7 @@
 /*   By: agaspard <agaspard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/18 11:44:22 by agaspard          #+#    #+#             */
-/*   Updated: 2017/02/25 13:18:53 by agaspard         ###   ########.fr       */
+/*   Updated: 2017/02/28 16:49:57 by agaspard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,18 @@ typedef struct	s_env
 	int			yi;
 	int			xf;
 	int			yf;
-	int			**tab;
+	int			x;
+	int			y;
+	int			z;
+	int			**map;
 }				t_env;
 
+int		gere_key(int keycode, void *data);
+void	put_pixel(t_env *e, int x, int y);
+void	print_line(t_env *e);
 int		fdf(int ac, char **av);
-int		check_error(int ac, char **av, t_env *e);
-// int		main(int ac, char **av);
+int		get_max(char *av, t_env *e);
+void	*set_map(char *av, t_env *e);
+void	get_coor_3D(t_env *e);
 
 #endif
