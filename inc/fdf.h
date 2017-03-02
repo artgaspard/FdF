@@ -6,7 +6,7 @@
 /*   By: agaspard <agaspard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/18 11:44:22 by agaspard          #+#    #+#             */
-/*   Updated: 2017/03/02 18:02:27 by agaspard         ###   ########.fr       */
+/*   Updated: 2017/03/02 18:30:08 by agaspard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct	s_env
 	int			yi;
 	int			xf;
 	int			yf;
+	int			z;
 	int			**map;
 }				t_env;
 

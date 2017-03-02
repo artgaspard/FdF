@@ -6,7 +6,7 @@
 /*   By: agaspard <agaspard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/26 10:45:51 by agaspard          #+#    #+#             */
-/*   Updated: 2017/03/02 18:00:20 by agaspard         ###   ########.fr       */
+/*   Updated: 2017/03/02 18:37:39 by agaspard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void    print_line(t_env *e)
 	}
 }
 /*
-void	iso_2D(int x, int y, int z, t_env *e)
+void	iso_2D_1(int x, int y, int z, t_env *e)
 {
 	int xiso;
 	int	yiso;
@@ -85,18 +85,23 @@ void	iso_2D(int x, int y, int z, t_env *e)
 
 	cte1 = 1;
 	cte2 = 1;
+	x = e->xi;
+	y = e->yi;
+	z = e->z;
 	xiso = (cte1 * x) - (cte2 * y);
 	yiso = z + ((cte1 / 2) * x) + ((cte2 / 2) * y);
-	e->xf = xiso;
-	e->yf = yiso;
+	e->xi = xiso;
+	e->yi = yiso;
 }
 */
 void	get_coor_3D(t_env *e)
 {
 	int	x;
 	int y;
+	int z;
 
 	y = 0;
+	z = 0;
 	while (y <= e->ymax)
 	{
 		x = 0;
@@ -104,11 +109,12 @@ void	get_coor_3D(t_env *e)
 		{
 			e->xi = x;
 			e->yi = y;
-			if (y + 1 <= e->ymax)
+		//	e->z = e->map[x][y];
+			if (y + 1 <= e->ymax && x != 0)
+			{
 				e->yf = y + 1;
-			else
-				e->yf = y;
-			print_line(e);
+				print_line(e);
+			}
 			if (x + 1 <= e->xmax)
 				e->xf = x + 1;
 			else
