@@ -6,7 +6,7 @@
 /*   By: agaspard <agaspard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/26 10:45:51 by agaspard          #+#    #+#             */
-/*   Updated: 2017/02/28 17:00:28 by agaspard         ###   ########.fr       */
+/*   Updated: 2017/03/02 18:00:20 by agaspard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ void    print_line(t_env *e)
 	int cumul;
 	int i;
 
-	x = e->xi;
-	y = e->yi;
-	dx = e->xf - x;
-	dy = e->yf - y;
+	x = e->xi * 50;
+	y = e->yi * 50;
+	dx = (e->xf * 50) - x;
+	dy = (e->yf * 50) - y;
 	xinc = (dx > 0) ? 1 : -1;
 	yinc = (dy > 0) ? 1 : -1;
 	if (dx > dy)
@@ -95,29 +95,28 @@ void	get_coor_3D(t_env *e)
 {
 	int	x;
 	int y;
-	int	y2;
 
-	x = 0;
 	y = 0;
-	y2 = 1;
-	while (y < e->ymax)
+	while (y <= e->ymax)
 	{
-		while (x < e->xmax)
+		x = 0;
+		while (x <= e->xmax)
 		{
-			e->xi = e->map[y][x];
-			printf("xi = %d\n", e->map[y][x]);
-			e->yi = *(e->map[y]);
-			printf("yi = %d\n", *(e->map[y]));
-			e->xf = e->map[y2][x];
-			printf("xf = %d\n", e->map[y2][x]);
-			e->yf = *(e->map[y2]);
-			printf("yf = %d\n", *(e->map[y2]));
+			e->xi = x;
+			e->yi = y;
+			if (y + 1 <= e->ymax)
+				e->yf = y + 1;
+			else
+				e->yf = y;
+			print_line(e);
+			if (x + 1 <= e->xmax)
+				e->xf = x + 1;
+			else
+				e->xf = x;
+			e->yf = y;
 			print_line(e);
 			x++;
-			y2++;
 		}
-		x = 0;
 		y++;
-		y2 = y;
 	}
 }

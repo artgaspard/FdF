@@ -6,7 +6,7 @@
 /*   By: agaspard <agaspard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 15:06:43 by agaspard          #+#    #+#             */
-/*   Updated: 2017/02/28 16:55:49 by agaspard         ###   ########.fr       */
+/*   Updated: 2017/03/02 18:01:27 by agaspard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int		fdf(int ac, char **av)
 		if ((e = (t_env*)malloc(sizeof(t_env))) == 0)
 			return (0);
 		init_mlx(e);
+		create_img(e);
 		if (get_max(av[1], e) == -1)
 		{
 			ft_putstr("Found wrong line length. Exiting.\n");
@@ -40,8 +41,6 @@ int		fdf(int ac, char **av)
 		}
 		set_map(av[1], e);
 		get_coor_3D(e);
-		create_img(e);
-		print_line(e);
 		mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
 		mlx_key_hook(e->win, gere_key, e);
 		mlx_destroy_image(e->mlx, e->img);
