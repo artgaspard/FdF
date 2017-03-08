@@ -6,7 +6,7 @@
 /*   By: agaspard <agaspard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 15:06:43 by agaspard          #+#    #+#             */
-/*   Updated: 2017/03/02 18:01:27 by agaspard         ###   ########.fr       */
+/*   Updated: 2017/03/08 17:31:09 by agaspard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ int		fdf(int ac, char **av)
 		set_map(av[1], e);
 		get_coor_3D(e);
 		mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
-		mlx_key_hook(e->win, gere_key, e);
+		mlx_hook(e->win, 2, 3, gere_key, e);
+		mlx_loop_hook(e->mlx, &loop_event, e);
 		mlx_destroy_image(e->mlx, e->img);
 		mlx_loop(e->mlx);
 	}

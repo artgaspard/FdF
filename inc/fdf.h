@@ -6,7 +6,7 @@
 /*   By: agaspard <agaspard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/18 11:44:22 by agaspard          #+#    #+#             */
-/*   Updated: 2017/03/02 18:30:08 by agaspard         ###   ########.fr       */
+/*   Updated: 2017/03/08 17:31:12 by agaspard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,14 @@
 
 # define KEY_ESC 53
 
+typedef struct	s_bres
+{
+	float		dx;
+	float		dy;
+	float		xinc;
+	float		yinc;
+}				t_bres;
+
 typedef struct	s_env
 {
 	void		*mlx;
@@ -41,10 +49,16 @@ typedef struct	s_env
 	int			xf;
 	int			yf;
 	int			z;
+	int			r;
+	int			g;
+	int			b;
 	int			**map;
 }				t_env;
 
-int		gere_key(int keycode, void *data);
+void	height_color(t_env *e);
+int		gere_key(int keycode, t_env *e);
+int		loop_event(t_env *e);
+void	create_img(t_env *e);
 void	put_pixel(t_env *e, int x, int y);
 void	print_line(t_env *e);
 int		fdf(int ac, char **av);
