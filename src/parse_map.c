@@ -6,7 +6,7 @@
 /*   By: agaspard <agaspard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/19 16:21:15 by agaspard          #+#    #+#             */
-/*   Updated: 2017/03/07 14:43:45 by agaspard         ###   ########.fr       */
+/*   Updated: 2017/03/09 15:47:03 by agaspard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void		get_map(int *x, int y, char **tab, t_env *e)
 	}
 }
 
-void		*set_map(char *av, t_env *e)
+void		set_map(char *av, t_env *e)
 {
 	char	**tab;
 	char	*line;
@@ -104,11 +104,11 @@ void		*set_map(char *av, t_env *e)
 	x = 0;
 	y = 0;
 	if ((e->map = (int**)malloc(sizeof(int*) * e->ymax)) == 0)
-		return (NULL);
+		return ;
 	while (get_next_line(fd, &line) == 1 && y < e->ymax)
 	{
 		if ((e->map[y] = (int*)malloc(sizeof(int) * e->xmax)) == 0)
-			return (NULL);
+			return ;
 		tab = ft_strsplit(line, ' ');
 		if (tab)
 			get_map(&x, y, tab, e);
@@ -118,5 +118,4 @@ void		*set_map(char *av, t_env *e)
 		y++;
 	}
 	close(fd);
-	return (0);
 }
