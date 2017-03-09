@@ -6,7 +6,7 @@
 /*   By: agaspard <agaspard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/26 10:45:51 by agaspard          #+#    #+#             */
-/*   Updated: 2017/03/09 17:55:48 by agaspard         ###   ########.fr       */
+/*   Updated: 2017/03/09 19:17:19 by agaspard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 void		vertical_line(t_env *e, int x, int y)
 {
+	int		i;
+
+	i = 1;
 	e->cumul = e->dx / 2;
-	while ((e->i)++ <= e->dx)
+	while (i++ <= e->dx)
 	{
 		x += e->xinc;
 		e->cumul += e->dy;
@@ -30,8 +33,11 @@ void		vertical_line(t_env *e, int x, int y)
 
 void		horizontal_line(t_env *e, int x, int y)
 {
+	int		i;
+
+	i = 1;
 	e->cumul = e->dy / 2;
-	while ((e->i)++ <= e->dy)
+	while (i++ <= e->dy)
 	{
 		y += e->yinc;
 		e->cumul += e->dx;
@@ -58,15 +64,9 @@ void		print_line(t_env *e)
 	e->dx = (e->xf - e->xi >= 0) ? e->dx : -(e->dx);
 	e->dy = (e->yf - e->yi >= 0) ? e->dy : -(e->dy);
 	if (e->dx > e->dy)
-	{
-		e->i = 1;
 		vertical_line(e, x, y);
-	}
 	else
-	{
-		e->i = 1;
 		horizontal_line(e, x, y);
-	}
 }
 
 void		iso(t_env *e, int x, int y, int count)
@@ -77,15 +77,15 @@ void		iso(t_env *e, int x, int y, int count)
 	cte1 = 1;
 	cte2 = 1;
 	e->zi = e->map[y][x];
-	e->xi = ((cte1 * x - cte2 * y) * e->case_size + 350) * e->zoom;;
-	e->yi = ((-(e->zi * e->z_size / 10) + cte1 / 2 * x + cte2 / 2 * y) * e->case_size + 350) * e->zoom;
+	e->xi = ((cte1 * x - cte2 * y) * e->case_size + 300) * e->zoom;;
+	e->yi = ((-(e->zi * e->z_size / 10) + cte1 / 2 * x + cte2 / 2 * y) * e->case_size + 300) * e->zoom;
 	if (count == 0)
 		x++;
 	else
 		y++;
 	e->zf = e->map[y][x];
-	e->xf = ((cte1 * x - cte2 * y) * e->case_size + 350) * e->zoom;
-	e->yf = ((-(e->zf * e->z_size / 10) + cte1 / 2 * x + cte2 / 2 * y) * e->case_size + 350) * e->zoom;
+	e->xf = ((cte1 * x - cte2 * y) * e->case_size + 300) * e->zoom;
+	e->yf = ((-(e->zf * e->z_size / 10) + cte1 / 2 * x + cte2 / 2 * y) * e->case_size + 300) * e->zoom;
 }
 
 void		get_coor(t_env *e)

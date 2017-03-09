@@ -6,7 +6,7 @@
 /*   By: agaspard <agaspard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 12:39:49 by agaspard          #+#    #+#             */
-/*   Updated: 2017/03/09 18:02:53 by agaspard         ###   ########.fr       */
+/*   Updated: 2017/03/09 19:01:42 by agaspard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,12 @@
 
 void	height_color(t_env *e)
 {
-//	e->zi = -(e->zi);
-//	e->zf = -(e->zf);
-	printf("ZI = %d\n", e->zi);
-	printf("ZF = %d\n", e->zf);
-/*	if ((e->zi + e->zf) < 0)
+	if ((e->zi + e->zf) < 0)
 	{
 		e->r = 0;
-		e->g = 102;
-		e->b = 204;
-	}*/
+		e->g = 128;
+		e->b = 255;
+	}
 	if ((e->zi + e->zf) >= 0 && (e->zi + e->zf) < 10)
 	{
 		e->r = 0;
@@ -32,9 +28,9 @@ void	height_color(t_env *e)
 	}
 	if ((e->zi + e->zf) >= 10 && (e->zi + e->zf) < 20)
 	{
-		e->r = 153;
-		e->g = 76;
-		e->b = 0;
+		e->r = 0;
+		e->g = 102;
+		e->b = 204;
 	}
 	if ((e->zi + e->zf) >= 20)
 	{
@@ -68,8 +64,8 @@ int		gere_key(int keycode, t_env *e)
 	}
 	if (keycode == KEY_PLUS)
 		e->zoom += 0.1;
-	if (keycode == KEY_MINUS && e->zoom -1 > 0)
-		e->zoom -= 0.11;
+	if (keycode == KEY_MINUS && e->zoom -0.1 > 0)
+		e->zoom -= 0.1;
 	return (0);
 }
 

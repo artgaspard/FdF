@@ -6,7 +6,7 @@
 /*   By: agaspard <agaspard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/18 11:44:22 by agaspard          #+#    #+#             */
-/*   Updated: 2017/03/09 17:29:50 by agaspard         ###   ########.fr       */
+/*   Updated: 2017/03/09 19:17:02 by agaspard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,10 @@ typedef struct	s_env
 	int			r;
 	int			g;
 	int			b;
-	int			i;
 	int			case_size;
 	int			z_size;
+	int			wide;
+	int			height;
 	int			**map;
 	float		zoom;
 	float		dx;
