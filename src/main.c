@@ -6,7 +6,7 @@
 /*   By: agaspard <agaspard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 18:13:43 by agaspard          #+#    #+#             */
-/*   Updated: 2017/02/25 13:20:45 by agaspard         ###   ########.fr       */
+/*   Updated: 2017/03/17 17:18:02 by agaspard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int		main(int ac, char **av)
 {
 	if (fdf(ac, av) != -1)
-		ft_putendl("ca marche");
+		return (1);
 	return (0);
 }
-
