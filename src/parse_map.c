@@ -6,7 +6,7 @@
 /*   By: agaspard <agaspard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/19 16:21:15 by agaspard          #+#    #+#             */
-/*   Updated: 2017/03/17 17:34:56 by agaspard         ###   ########.fr       */
+/*   Updated: 2017/03/18 17:20:53 by agaspard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ int			check_line(char *line, int x)
 			i++;
 		if (line[i] && ft_isdigit(line[i]) == 1)
 			len++;
-		while ((line[i] && ft_isdigit(line[i]) == 1) || (line[i] == '-' && ft_isdigit(line[i + 1])))
+		while ((line[i] && ft_isdigit(line[i]) == 1) || \
+				(line[i] == '-' && ft_isdigit(line[i + 1])))
 			i++;
 	}
 	if (len >= x)

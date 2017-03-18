@@ -6,7 +6,7 @@
 /*   By: agaspard <agaspard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 12:39:49 by agaspard          #+#    #+#             */
-/*   Updated: 2017/03/17 17:38:33 by agaspard         ###   ########.fr       */
+/*   Updated: 2017/03/18 15:19:19 by agaspard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,19 @@ void	height_color(t_env *e)
 	}
 }
 
+int		gere_key2(int keycode, t_env *e)
+{
+	if (keycode == KEY_CTE_2_PLUS && e->cte2 < 1)
+		e->cte2 += 0.1;
+	if (keycode == KEY_CTE_2_MINUS && e->cte2 > 0.5)
+		e->cte2 -= 0.1;
+	if (keycode == KEY_Z_PLUS)
+		e->z_size += 0.1;
+	if (keycode == KEY_Z_MINUS)
+		e->z_size -= 0.1;
+	return (0);
+}
+
 int		gere_key(int keycode, t_env *e)
 {
 	if (keycode == KEY_ESC)
@@ -56,6 +69,11 @@ int		gere_key(int keycode, t_env *e)
 		e->zoom += 0.1;
 	if (keycode == KEY_MINUS && e->zoom > 0)
 		e->zoom -= 0.1;
+	if (keycode == KEY_CTE_1_PLUS && e->cte1 < 1)
+		e->cte1 += 0.1;
+	if (keycode == KEY_CTE_1_MINUS && e->cte1 > 0.5)
+		e->cte1 -= 0.1;
+	gere_key2(keycode, e);
 	return (0);
 }
 

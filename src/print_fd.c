@@ -6,7 +6,7 @@
 /*   By: agaspard <agaspard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/26 10:45:51 by agaspard          #+#    #+#             */
-/*   Updated: 2017/03/17 17:04:37 by agaspard         ###   ########.fr       */
+/*   Updated: 2017/03/18 15:22:29 by agaspard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,26 +71,24 @@ void		print_line(t_env *e)
 
 void		iso(t_env *e, int count)
 {
-	double	cte1;
-	double	cte2;
 	int		x;
 	int		y;
 
-	cte1 = 1;
-	cte2 = 1;
 	x = e->x;
 	y = e->y;
 	e->zi = e->map[y][x];
-	e->xi = ((cte1 * x - cte2 * y) * e->case_size) * e->zoom + e->x_mid + e->mv_lr;
-	e->yi = ((-(e->zi * e->z_size / 10) + cte1 / 2 * x + cte2 / 2 * y) \
+	e->xi = ((e->cte1 * x - e->cte2 * y) * e->case_size) * e->zoom \
+			+ e->x_mid + e->mv_lr;
+	e->yi = ((-(e->zi * e->z_size / 10) + e->cte1 / 2 * x + e->cte2 / 2 * y) \
 			* e->case_size) * e->zoom + e->y_mid + e->mv_ud;
 	if (count == 0)
 		x++;
 	else
 		y++;
 	e->zf = e->map[y][x];
-	e->xf = ((cte1 * x - cte2 * y) * e->case_size) * e->zoom + e->x_mid + e->mv_lr;
-	e->yf = ((-(e->zf * e->z_size / 10) + cte1 / 2 * x + cte2 / 2 * y) \
+	e->xf = ((e->cte1 * x - e->cte2 * y) * e->case_size) * e->zoom \
+			+ e->x_mid + e->mv_lr;
+	e->yf = ((-(e->zf * e->z_size / 10) + e->cte1 / 2 * x + e->cte2 / 2 * y) \
 			* e->case_size) * e->zoom + e->y_mid + e->mv_ud;
 }
 

@@ -6,7 +6,7 @@
 /*   By: agaspard <agaspard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 15:06:43 by agaspard          #+#    #+#             */
-/*   Updated: 2017/03/17 17:42:49 by agaspard         ###   ########.fr       */
+/*   Updated: 2017/03/18 15:08:03 by agaspard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 void	init_mlx(t_env *e)
 {
 	e->zoom = 1;
+	e->cte1 = 1;
+	e->cte2 = 1;
 	e->w_size = win_size(e);
-	e->x_mid = abs(e->w_size.xmin) + 20;
-	e->y_mid = abs(e->w_size.ymin) + 20;
-	e->width = abs(e->w_size.xmin) + abs(e->w_size.xmax) + 40;
-	e->height = abs(e->w_size.ymin) + abs(e->w_size.ymax) + 40;
+	e->x_mid = abs(e->w_size->xmin) + 30;
+	e->y_mid = abs(e->w_size->ymin) + 20;
+	e->width = abs(e->w_size->xmin) + abs(e->w_size->xmax) + 60;
+	e->height = abs(e->w_size->ymin) + abs(e->w_size->ymax) + 40;
 	e->mlx = mlx_init();
 	e->win = mlx_new_window(e->mlx, e->width, e->height, "fdf");
 }
