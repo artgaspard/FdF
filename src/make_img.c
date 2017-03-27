@@ -6,7 +6,7 @@
 /*   By: agaspard <agaspard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 15:06:43 by agaspard          #+#    #+#             */
-/*   Updated: 2017/03/18 15:08:03 by agaspard         ###   ########.fr       */
+/*   Updated: 2017/03/27 15:10:58 by agaspard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	init_mlx(t_env *e)
 	e->height = abs(e->w_size->ymin) + abs(e->w_size->ymax) + 40;
 	e->mlx = mlx_init();
 	e->win = mlx_new_window(e->mlx, e->width, e->height, "fdf");
+	create_img(e);
 }
 
 void	create_img(t_env *e)
@@ -77,6 +78,8 @@ int		fdf(int ac, char **av)
 		return (0);
 	if (ac == 2 || ac == 4)
 	{
+		if (get_max(av[1], e) == 1)
+			return (0);
 		if (get_max(av[1], e) == -1)
 			return (error_fd(av, e, 1));
 		set_map(av[1], e);
@@ -85,7 +88,6 @@ int		fdf(int ac, char **av)
 		else
 			error_fd(av, e, 3);
 		init_mlx(e);
-		create_img(e);
 		get_coor(e);
 		mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
 		mlx_hook(e->win, 2, 3, gere_key, e);
