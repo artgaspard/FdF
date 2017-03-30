@@ -6,7 +6,7 @@
 /*   By: agaspard <agaspard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/18 11:44:22 by agaspard          #+#    #+#             */
-/*   Updated: 2017/03/18 16:17:46 by agaspard         ###   ########.fr       */
+/*   Updated: 2017/03/30 13:08:20 by agaspard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void			print_line(t_env *e);
 void			iso(t_env *e, int count);
 void			get_coor(t_env *e);
 int				check_len(char *line, int x, int first_line);
-int				check_line(char *line, int x);
+int				check_line(char *line, int x, int i);
 int				get_max(char *av, t_env *e);
 void			get_map(int *x, int y, char **tab, t_env *e);
 void			set_map(char *av, t_env *e);

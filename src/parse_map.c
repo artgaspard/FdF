@@ -6,7 +6,7 @@
 /*   By: agaspard <agaspard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/19 16:21:15 by agaspard          #+#    #+#             */
-/*   Updated: 2017/03/27 15:53:57 by agaspard         ###   ########.fr       */
+/*   Updated: 2017/03/30 13:08:16 by agaspard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,18 @@ int			check_len(char *line, int x, int first_line)
 	return (len);
 }
 
-int			check_line(char *line, int x)
+int			check_line(char *line, int x, int i)
 {
-	int		i;
 	int		len;
 
 	len = 0;
-	i = 0;
 	while (line[i])
 	{
+		if (line[i] == ',')
+		{
+			while (line[i] != ' ')
+				i++;
+		}
 		if (line[i] && line[i] != '\n' && line[i] != ' ' \
 				&& line[i] != '-' && ft_isdigit(line[i]) == 0)
 			return (-1);
@@ -63,15 +66,15 @@ int			get_max(char *av, t_env *e)
 	x = 0;
 	y = 0;
 	first_line = 0;
-	if (get_next_line(fd, &line) == 0)
+	if ((fd = open(av, O_RDONLY)) == -1 || get_next_line(fd, &line) == 0)
 	{
 		ft_putstr("No data found.\n");
 		return (1);
 	}
-	while (get_next_line(fd, &line) == 1 && ++y && ++first_line)
+	while (get_next_line(fd, &line) == 1 && ++y)
 	{
-		x = check_line(line, x);
-		if (x == -1 || (x = check_len(line, x, first_line)) == -1)
+		x = check_line(line, x, 0);
+		if ((x = check_len(line, x, first_line++)) == -1 || x == -1)
 			return (-1);
 	}
 	close(fd);
