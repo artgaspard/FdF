@@ -9,7 +9,7 @@ To launch FDF :
 
 - execute ./fdf [map name]
 
-    maps are in 'maps' and 'test_maps' directories (ony .fdf files can be read)
+    maps are in 'maps' and 'test_maps' directories (only .fdf files can be read)
 
 
 
